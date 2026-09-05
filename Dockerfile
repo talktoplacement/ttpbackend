@@ -8,9 +8,12 @@ WORKDIR /src
 COPY Directory.Build.props Directory.Packages.props ./
 COPY CareerPlatform.sln ./
 COPY src/CareerPlatform.Api/CareerPlatform.Api.csproj src/CareerPlatform.Api/
-COPY tests/CareerPlatform.ArchitectureTests/CareerPlatform.ArchitectureTests.csproj tests/CareerPlatform.ArchitectureTests/
-COPY tests/CareerPlatform.UnitTests/CareerPlatform.UnitTests.csproj tests/CareerPlatform.UnitTests/
-COPY tests/CareerPlatform.IntegrationTests/CareerPlatform.IntegrationTests.csproj tests/CareerPlatform.IntegrationTests/
+
+# The test projects are deliberately NOT copied. Both the restore and the publish
+# below target CareerPlatform.Api.csproj directly rather than the solution, so the
+# test csproj files were never used — they only forced the deployment repo to carry
+# a tests/ tree it does not need, and the build failed outright when it was absent.
+# Tests run in CI and locally against the solution, not inside the runtime image.
 RUN dotnet restore src/CareerPlatform.Api/CareerPlatform.Api.csproj
 
 # Copy the rest and publish a self-contained-free framework-dependent build.
