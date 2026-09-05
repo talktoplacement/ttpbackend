@@ -1,0 +1,173 @@
+# ============================================================================
+# Production compose — Hostinger VPS (2 GB RAM).
+#
+# Only the backend runs here. Frontend is on Vercel, Postgres is on Supabase,
+# so the VPS has ~1.5 GB free after OS + Docker overhead — plenty for a single
+# .NET 8 API container.
+#
+# Topology:
+#   Browser → Vercel (frontend)
+#          └→ Cloudflare (proxied) → Nginx (host :443) → backend (Docker :8080)
+#                                                            └→ Supabase (SSL)
+#                                                            └→ Brevo API
+#                                                            └→ Razorpay API
+#                                                            └→ Gmail SMTP
+#
+# Env vars come from `.env.prod` next to this file (see .env.prod.example).
+# ============================================================================
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    image: careerplatform-backend:latest
+    container_name: careerplatform_backend
+    restart: unless-stopped
+
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      ASPNETCORE_URLS: http://+:8080
+      # Cap the managed heap on the 2 GB VPS. 0x18000000 = 384 MB.
+      DOTNET_GCHeapHardLimit: "0x18000000"
+      DOTNET_gcServer: "0"
+
+      # ── Supabase Postgres (session pooler, port 5432) ───────────────────
+      # Use the session pooler URL, NOT the transaction pooler (6543) — Npgsql
+      # uses prepared statements which the transaction pooler doesn't support.
+      # `Search Path` confines the app to its own schema. Required when the database
+      # is shared with another application — six table names in schema.sql are generic
+      # enough to collide, and CREATE TABLE IF NOT EXISTS would silently skip them,
+      # leaving the app bound to a foreign table. Defaults to `public`.
+      ConnectionStrings__DefaultConnection: >-
+        Host=${SUPABASE_HOST};Port=${SUPABASE_PORT:-5432};Database=${SUPABASE_DB:-postgres};Username=${SUPABASE_USER};Password=${SUPABASE_PASSWORD};SSL Mode=Require;Trust Server Certificate=true;Include Error Detail=false;Search Path=${DATABASE_SCHEMA:-public}
+      ConnectionStrings__Redis: ""
+
+      # ── JWT ─────────────────────────────────────────────────────────────
+      Jwt__Issuer:   ${JWT_ISSUER}
+      Jwt__Audience: ${JWT_AUDIENCE:-authenticated}
+      Jwt__Secret:   ${JWT_SECRET}
+
+      # ── Razorpay ────────────────────────────────────────────────────────
+      Razorpay__KeyId:     ${RAZORPAY_KEY_ID}
+      Razorpay__KeySecret: ${RAZORPAY_KEY_SECRET}
+
+      # ── Brevo (ALL outbound email: OTP, password reset, admin/promo) ────
+      Brevo__ApiKey:        ${BREVO_API_KEY}
+      Brevo__SenderEmail:   ${BREVO_SENDER_EMAIL}
+      Brevo__SenderName:    ${BREVO_SENDER_NAME:-CareerPlatform}
+      Brevo__OtpTemplateId: ${BREVO_OTP_TEMPLATE_ID:-}
+
+      # ── CORS — Vercel origin(s) ─────────────────────────────────────────
+      Cors__AllowedOrigins__0: ${FRONTEND_ORIGIN}
+      Cors__AllowedOrigins__1: ${FRONTEND_ORIGIN_PREVIEW:-}
+      # Per-commit Vercel preview hostnames cannot be enumerated; allow them by
+      # team-scoped host suffix. Leave empty to allow production origins only.
+      Cors__AllowedOriginSuffixes__0: ${FRONTEND_PREVIEW_SUFFIX:-}
+
+      # ── Session cookie — Vercel and this API are DIFFERENT sites ────────
+      # SameSite=None is mandatory here: with Lax the browser refuses to send
+      # the cookie on cross-site fetches, so login would appear to succeed and
+      # every following request would 401. None requires Secure, hence
+      # AlwaysSecure — which also protects against a missing X-Forwarded-Proto
+      # on the Nginx → container hop.
+      AuthCookie__SameSite: ${AUTH_COOKIE_SAMESITE:-None}
+      AuthCookie__AlwaysSecure: ${AUTH_COOKIE_ALWAYS_SECURE:-true}
+      AuthCookie__Partitioned: ${AUTH_COOKIE_PARTITIONED:-false}
+
+      # ── Code-execution sandbox (assessment coding questions) ───────────
+      # Reachable over the implicit compose network. Set Provider=Disabled to
+      # turn coding questions off; MCQ assessments are unaffected.
+      CodeExecution__Provider: ${CODE_EXECUTION_PROVIDER:-Piston}
+      CodeExecution__BaseUrl: ${CODE_EXECUTION_BASE_URL:-http://piston:2000}
+
+    # Bind only to loopback; nginx on the host is the sole public entry point.
+    ports:
+      - "127.0.0.1:8080:8080"
+
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:8080/health/live"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+
+    deploy:
+      resources:
+        limits:
+          memory: 700M
+
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # ── Code-execution sandbox ────────────────────────────────────────────────
+  # Runs untrusted student code for assessment coding questions.
+  #
+  # MEMORY: this box has ~1.5 GB free and the backend is capped at 700M, so
+  # Piston gets 500M. That is enough for interpreted languages (Python, Node)
+  # and light JVM/C++ work at low concurrency. If you see OOM kills, either
+  # raise the VPS tier or point CodeExecution__BaseUrl at a Piston instance on
+  # a separate host — the backend only needs an HTTP URL, so moving it is a
+  # config change with no code impact.
+  #
+  # SECURITY: `privileged: true` is required (Piston builds per-language jails)
+  # and is a real blast-radius increase on a host that also terminates API
+  # traffic. It is NOT published to the internet — no `ports` mapping, so it is
+  # reachable only from the backend container over the compose network. Never
+  # add a host port binding for it.
+  piston:
+    image: ghcr.io/engineer-man/piston:latest
+    container_name: careerplatform_piston
+    restart: unless-stopped
+    privileged: true
+    # Deliberately no `ports:` — internal access only.
+    expose:
+      - "2000"
+    volumes:
+      - piston_packages:/piston/packages
+    healthcheck:
+      test: ["CMD-SHELL", "wget --spider -q http://127.0.0.1:2000/api/v2/runtimes || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+    deploy:
+      resources:
+        limits:
+          memory: 500M
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # One-shot language installer; exits after installing. Versions MUST match
+  # codeExecution.languages.* in backend/application.properties.
+  # Run after first deploy and after changing that list:
+  #   docker compose -f docker-compose.prod.yml run --rm piston-init
+  piston-init:
+    image: curlimages/curl:latest
+    container_name: careerplatform_piston_init
+    depends_on:
+      piston:
+        condition: service_healthy
+    restart: "no"
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - |
+        set -eu
+        for pkg in "python 3.10.0" "javascript 18.15.0" "java 15.0.2" "c++ 10.2.0"; do
+          name=$${pkg% *}; version=$${pkg#* }
+          echo "Installing $$name $$version ..."
+          curl -sS -X POST http://piston:2000/api/v2/packages \
+            -H 'Content-Type: application/json' \
+            -d "{\"language\":\"$$name\",\"version\":\"$$version\"}" || true
+        done
+        echo "Installed runtimes:"
+        curl -sS http://piston:2000/api/v2/runtimes
+
+volumes:
+  piston_packages:

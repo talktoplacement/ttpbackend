@@ -1,0 +1,59 @@
+# EditorConfig for the CareerPlatform backend (https://editorconfig.org)
+# Sensible, non-exhaustive C# conventions shared across every project in the tree.
+root = true
+
+# All files
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+
+# C# source
+[*.cs]
+indent_size = 4
+tab_width = 4
+
+# Language conventions
+csharp_style_namespace_declarations = file_scoped:suggestion
+csharp_using_directive_placement = outside_namespace:suggestion
+dotnet_sort_system_directives_first = true
+dotnet_separate_import_directive_groups = false
+csharp_prefer_braces = true:suggestion
+csharp_style_var_for_built_in_types = false:suggestion
+csharp_style_var_when_type_is_apparent = true:suggestion
+
+# Nullable / modern C#
+dotnet_style_null_propagation = true:suggestion
+dotnet_style_coalesce_expression = true:suggestion
+csharp_style_prefer_null_check_over_type_check = true:suggestion
+
+# Expression-bodied members
+csharp_style_expression_bodied_methods = when_on_single_line:suggestion
+csharp_style_expression_bodied_properties = true:suggestion
+
+# Naming: interfaces prefixed with I
+dotnet_naming_rule.interfaces_start_with_i.severity = suggestion
+dotnet_naming_rule.interfaces_start_with_i.symbols = interface_symbol
+dotnet_naming_rule.interfaces_start_with_i.style = prefix_i_style
+dotnet_naming_symbols.interface_symbol.applicable_kinds = interface
+dotnet_naming_style.prefix_i_style.required_prefix = I
+dotnet_naming_style.prefix_i_style.capitalization = pascal_case
+
+# Naming: types and members are PascalCase
+dotnet_naming_rule.types_are_pascal_case.severity = suggestion
+dotnet_naming_rule.types_are_pascal_case.symbols = type_and_member_symbols
+dotnet_naming_rule.types_are_pascal_case.style = pascal_case_style
+dotnet_naming_symbols.type_and_member_symbols.applicable_kinds = class,struct,enum,property,method,event
+dotnet_naming_style.pascal_case_style.capitalization = pascal_case
+
+# Project / config files
+[*.{csproj,props,targets}]
+indent_size = 2
+
+[*.{json,yml,yaml}]
+indent_size = 2
+
+[*.md]
+trim_trailing_whitespace = false

@@ -1,0 +1,90 @@
+# ============================================================================
+# Local development compose.
+#
+# Runs a local Postgres in Docker for offline dev (faster than round-tripping
+# to Supabase, and lets you nuke the volume freely). Backend and frontend run
+# on the host so hot-reload / debuggers / IDE integration all work.
+#
+# Usage:
+#   docker compose up -d                                  # start Postgres
+#   dotnet run --project backend/src/CareerPlatform.Api   # backend on :5215
+#   npm --prefix frontend run dev                         # frontend on :3000
+#
+# When you're ready to test against Supabase locally, put the Supabase
+# connection string in backend/.env or user-secrets instead of this compose.
+# ============================================================================
+
+services:
+  # ── Code-execution sandbox for assessment coding questions ────────────────
+  # Piston runs each submission in a throwaway container with its own time and
+  # output limits, which is what makes executing untrusted student code
+  # acceptable. `privileged` is required: Piston builds per-language jails.
+  #
+  # Languages are NOT bundled with the image — install them once with the
+  # one-shot `piston-init` service below (or `docker compose run --rm piston-init`).
+  # They persist in the `piston_packages` volume.
+  piston:
+    image: ghcr.io/engineer-man/piston:latest
+    container_name: careerplatform_piston_dev
+    restart: unless-stopped
+    privileged: true
+    ports:
+      - "2000:2000"
+    volumes:
+      - piston_packages:/piston/packages
+    healthcheck:
+      test: ["CMD-SHELL", "wget --spider -q http://127.0.0.1:2000/api/v2/runtimes || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  # One-shot language installer. Versions MUST match codeExecution.languages.*
+  # in backend/application.properties, or submissions in that language fail.
+  # Re-run after changing that list:  docker compose run --rm piston-init
+  piston-init:
+    image: curlimages/curl:latest
+    container_name: careerplatform_piston_init
+    depends_on:
+      piston:
+        condition: service_healthy
+    restart: "no"
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - |
+        set -eu
+        for pkg in "python 3.10.0" "javascript 18.15.0" "java 15.0.2" "c++ 10.2.0"; do
+          name=$${pkg% *}; version=$${pkg#* }
+          echo "Installing $$name $$version ..."
+          curl -sS -X POST http://piston:2000/api/v2/packages \
+            -H 'Content-Type: application/json' \
+            -d "{\"language\":\"$$name\",\"version\":\"$$version\"}" || true
+        done
+        echo "Installed runtimes:"
+        curl -sS http://piston:2000/api/v2/runtimes
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: careerplatform_postgres_dev
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: careerplatform_user
+      POSTGRES_PASSWORD: dev_local_password
+      POSTGRES_DB: careerplatform_db
+      TZ: UTC
+      PGTZ: UTC
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata_dev:/var/lib/postgresql/data
+      # Auto-applied by the postgres image on FIRST init only.
+      - ./backend/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U careerplatform_user -d careerplatform_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  pgdata_dev:
+  piston_packages:

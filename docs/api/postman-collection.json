@@ -1,0 +1,4796 @@
+{
+  "info": {
+    "name": "CareerPlatform API",
+    "description": "Auto-generated. Set `baseUrl` and `token` under the collection variables tab.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5215"
+    },
+    {
+      "key": "token",
+      "value": ""
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "item": [
+    {
+      "name": "Assessments",
+      "item": [
+        {
+          "name": "GET /api/Admin/Assessments",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Admin/Assessments",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Admin",
+                "Assessments"
+              ]
+            },
+            "description": null
+          }
+        },
+        {
+          "name": "POST /api/Admin/Assessments",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Admin/Assessments",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Admin",
+                "Assessments"
+              ]
+            },
+            "description": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "DELETE /api/Admin/Assessments/{id:int}",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Admin/Assessments/{id:int}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Admin",
+                "Assessments",
+                "{{id}}"
+              ]
+            },
+            "description": null
+          }
+        },
+        {
+          "name": "PUT /api/Admin/Assessments/{id:int}",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Admin/Assessments/{id:int}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Admin",
+                "Assessments",
+                "{{id}}"
+              ]
+            },
+            "description": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /api/Assessments",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Assessments",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Assessments"
+              ]
+            },
+            "description": null
+          }
+        },
+        {
+          "name": "GET /api/Assessments/attempts/me",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Assessments/attempts/me",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Assessments",
+                "attempts",
+                "me"
+              ]
+            },
+            "description": null
+          }
+        },
+        {
+          "name": "GET /api/Assessments/attempts/{id:int}",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Assessments/attempts/{id:int}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Assessments",
+                "attempts",
+                "{{id}}"
+              ]
+            },
+            "description": null
+          }
+        },
+        {
+          "name": "PUT /api/Assessments/attempts/{id:int}",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Assessments/attempts/{id:int}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Assessments",
+                "attempts",
+                "{{id}}"
+              ]
+            },
+            "description": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /api/Assessments/{slug}",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Assessments/{slug}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Assessments",
+                "{{slug}}"
+              ]
+            },
+            "description": null
+          }
+        },
+        {
+          "name": "POST /api/Assessments/{slug}/attempts",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Assessments/{slug}/attempts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Assessments",
+                "{{slug}}",
+                "attempts"
+              ]
+            },
+            "description": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "POST /api/Auth/login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Auth",
+                "login"
+              ]
+            },
+            "description": "Maps POST /api/Auth/login. Anonymous + sensitive rate limit for brute-force resilience.",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "POST /api/Auth/password/forgot",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Auth/password/forgot",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Auth",
+                "password",
+                "forgot"
+              ]
+            },
+            "description": "Maps POST /api/Auth/password/forgot. Anonymous + sensitive rate limit so bots cannot enumerate emails at speed. Response shape is identical for known and unknown emails (anti-enumeration).",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "POST /api/Auth/password/reset",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Auth/password/reset",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Auth",
+                "password",
+                "reset"
+              ]
+            },
+            "description": "Maps POST /api/Auth/password/reset. Anonymous + sensitive rate limit so the endpoint remains resistant to brute-force despite the fixed generic failure message.",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "POST /api/Auth/register/resend",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Auth/register/resend",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Auth",
+                "register",
+                "resend"
+              ]
+            },
+            "description": "Maps POST /api/Auth/register/resend. Anonymous + sensitive rate limit.",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "POST /api/Auth/register/start",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Auth/register/start",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Auth",
+                "register",
+                "start"
+              ]
+            },
+            "description": "Maps POST /api/Auth/register/start. Anonymous (registration is by definition pre-auth) but carries the sensitive rate limit so bot-driven signup floods are throttled per IP.",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "POST /api/Auth/register/verify",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Auth/register/verify",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Auth",
+                "register",
+                "verify"
+              ]
+            },
+            "description": "Maps POST /api/Auth/register/verify. Anonymous + sensitive rate limit.",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Broadcasts",
+      "item": [
+        {
+          "name": "GET /api/Dashboard/admin/broadcasts",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Dashboard/admin/broadcasts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Dashboard",
+                "admin",
+                "broadcasts"
+              ]
+            },
+            "description": "Maps GET /api/Dashboard/admin/broadcasts?type=. Admin-only + sensitive rate limit. Thin."
+          }
+        },
+        {
+          "name": "POST /api/Dashboard/admin/broadcasts",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Dashboard/admin/broadcasts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Dashboard",
+                "admin",
+                "broadcasts"
+              ]
+            },
+            "description": "Maps POST /api/Dashboard/admin/broadcasts. Admin-only + sensitive rate limit. The route path is preserved verbatim from the frontend contract (broadcastService.sendBroadcast).",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /api/Dashboard/admin/broadcasts/recipients",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Dashboard/admin/broadcasts/recipients",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Dashboard",
+                "admin",
+                "broadcasts",
+                "recipients"
+              ]
+            },
+            "description": "Maps GET /api/Dashboard/admin/broadcasts/recipients?plan=. Admin-only + sensitive rate limit. Returns a single ."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Certificates",
+      "item": [
+        {
+          "name": "POST /api/Admin/Certificates",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Admin/Certificates",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Admin",
+                "Certificates"
+              ]
+            },
+            "description": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /api/Admin/Certificates/{id:int}/download",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Admin/Certificates/{id:int}/download",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Admin",
+                "Certificates",
+                "{{id}}",
+                "download"
+              ]
+            },
+            "description": "Two routes share this handler: GET /api/Certificates/{id}/download \u2014 student, must own the row. GET /api/Admin/Certificates/{id}/download \u2014 admin, any row."
+          }
+        },
+        {
+          "name": "GET /api/Certificates/me",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Certificates/me",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Certificates",
+                "me"
+              ]
+            },
+            "description": null
+          }
+        },
+        {
+          "name": "GET /api/Certificates/verify/{code}",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Certificates/verify/{code}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Certificates",
+                "verify",
+                "{{code}}"
+              ]
+            },
+            "description": null,
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "GET /api/Certificates/{id:int}/download",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Certificates/{id:int}/download",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Certificates",
+                "{{id}}",
+                "download"
+              ]
+            },
+            "description": "Two routes share this handler: GET /api/Certificates/{id}/download \u2014 student, must own the row. GET /api/Admin/Certificates/{id}/download \u2014 admin, any row."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Content",
+      "item": [
+        {
+          "name": "POST /api/Admin/ContentManagement/import/interview",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Admin/ContentManagement/import/interview",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Admin",
+                "ContentManagement",
+                "import",
+                "interview"
+              ]
+            },
+            "description": "Maps POST /api/Admin/ContentManagement/import/interview. Accepts a single multipart/form-data file field named file containing an .xlsx workbook. Admin-only + sensitive rate limiting.",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /api/ContentManagement/languages",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/ContentManagement/languages",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ContentManagement",
+                "languages"
+              ]
+            },
+            "description": "Maps GET /api/ContentManagement/languages (route preserved verbatim from the legacy ContentManagementController, Req 24.2). Thin: dispatch \u2192 translate (Req 4.2, 4.3). Admin-only (Req 20.5) + sensitive rate limiting (Req 21)."
+          }
+        },
+        {
+          "name": "POST /api/ContentManagement/languages",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/ContentManagement/languages",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ContentManagement",
+                "languages"
+              ]
+            },
+            "description": "Maps POST /api/ContentManagement/languages (route preserved verbatim from the legacy ContentManagementController, Req 24.2). Thin: bind the request body, map to the command, dispatch, translate (Req 4.2, 4.3). Declares Admin-only authorization inline (Req 20.5) and preserves the legacy sensitive rate-limiting policy (Req 21).",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PUT /api/ContentManagement/languages/{id:int}/price",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/ContentManagement/languages/{id:int}/price",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ContentManagement",
+                "languages",
+                "{{id}}",
+                "price"
+              ]
+            },
+            "description": "Maps PUT /api/ContentManagement/languages/{id:int}/price (route preserved verbatim from the legacy ContentManagementController, Req 24.2). Thin: bind route id + body, map to the command, dispatch, translate (Req 4.2, 4.3). Admin-only (Req 20.5) + sensitive rate limiting (Req 21).",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PUT /api/ContentManagement/languages/{id:int}/publish",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/ContentManagement/languages/{id:int}/publish",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ContentManagement",
+                "languages",
+                "{{id}}",
+                "publish"
+              ]
+            },
+            "description": "Maps PUT /api/ContentManagement/languages/{id:int}/publish (route preserved verbatim from the legacy ContentManagementController, Req 24.2). Thin: bind route id + body, map to the command, dispatch, translate (Req 4.2, 4.3). Admin-only (Req 20.5) + sensitive rate limiting (Req 21).",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PUT /api/ContentManagement/languages/{languageId:int}/sections/reorder",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/ContentManagement/languages/{languageId:int}/sections/reorder",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ContentManagement",
+                "languages",
+                "{{languageId}}",
+                "sections",
+                "reorder"
+              ]
+            },
+            "description": "Maps PUT /api/ContentManagement/languages/{languageId:int}/sections/reorder (route preserved verbatim from the legacy ContentManagementController, Req 24.2). Thin: bind route id + body, map to the command, dispatch, translate (Req 4.2, 4.3). Admin-only (Req 20.5) + sensitive rate limiting (Req 21).",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /api/ContentManagement/public/curriculum/{langSlug}",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/ContentManagement/public/curriculum/{langSlug}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ContentManagement",
+                "public",
+                "curriculum",
+                "{{langSlug}}"
+              ]
+            },
+            "description": "Maps GET /api/ContentManagement/public/curriculum/{langSlug} (route preserved verbatim from the legacy ContentManagementController, Req 24.2). Thin: dispatch \u2192 translate (Req 4.2, 4.3). This is the one public read: it declares explicitly (Req 20.5, 20.6) and intentionally does NOT call RequireRateLimiting, reproducing the legacy [AllowAnonymous] + [DisableRateLimiting] decision (Req 21).",
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "POST /api/ContentManagement/sections",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/ContentManagement/sections",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ContentManagement",
+                "sections"
+              ]
+            },
+            "description": "Maps POST /api/ContentManagement/sections (route preserved verbatim from the legacy ContentManagementController, Req 24.2). Thin: bind the request body, map to the command, dispatch, translate (Req 4.2, 4.3). Admin-only (Req 20.5) + sensitive rate limiting (Req 21).",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PUT /api/ContentManagement/sections/{sectionId:int}/topics/reorder",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/ContentManagement/sections/{sectionId:int}/topics/reorder",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ContentManagement",
+                "sections",
+                "{{sectionId}}",
+                "topics",
+                "reorder"
+              ]
+            },
+            "description": "Maps PUT /api/ContentManagement/sections/{sectionId:int}/topics/reorder (route preserved verbatim from the legacy ContentManagementController, Req 24.2). Thin: bind route id + body, map to the command, dispatch, translate (Req 4.2, 4.3). Admin-only (Req 20.5) + sensitive rate limiting (Req 21).",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /api/ContentManagement/topics",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/ContentManagement/topics",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ContentManagement",
+                "topics"
+              ]
+            },
+            "description": "Maps POST /api/ContentManagement/topics. Admin-only + sensitive rate limiting.",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "DELETE /api/ContentManagement/topics/{id:int}",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/ContentManagement/topics/{id:int}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ContentManagement",
+                "topics",
+                "{{id}}"
+              ]
+            },
+            "description": "Maps DELETE /api/ContentManagement/topics/{id:int} (route preserved verbatim from the legacy ContentManagementController, Req 24.2). Thin: dispatch, then map success to 204 No Content (the legacy status) and any failure via the shared translator (Req 4.2, 4.3). Admin-only (Req 20.5) + sensitive rate limiting (Req 21)."
+          }
+        },
+        {
+          "name": "GET /api/ContentManagement/topics/{id:int}",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/ContentManagement/topics/{id:int}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ContentManagement",
+                "topics",
+                "{{id}}"
+              ]
+            },
+            "description": "Maps GET /api/ContentManagement/topics/{id:int} (route preserved verbatim from the legacy ContentManagementController, Req 24.2). Thin: dispatch \u2192 translate (Req 4.2, 4.3). Admin-only (Req 20.5) + sensitive rate limiting (Req 21)."
+          }
+        },
+        {
+          "name": "PUT /api/ContentManagement/topics/{id:int}",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/ContentManagement/topics/{id:int}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ContentManagement",
+                "topics",
+                "{{id}}"
+              ]
+            },
+            "description": "Maps PUT /api/ContentManagement/topics/{id:int}. Admin-only + sensitive rate limiting.",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Courses",
+      "item": [
+        {
+          "name": "GET /api/Courses",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Courses",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Courses"
+              ]
+            },
+            "description": "Maps GET /api/Courses. Thin: bind optional page/pageSize query params, dispatch, translate. Admin-only + sensitive rate limiting. The public catalog is served by at /api/Courses/catalog."
+          }
+        },
+        {
+          "name": "POST /api/Courses",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Courses",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Courses"
+              ]
+            },
+            "description": "Maps POST /api/Courses. Thin: bind the request body, map to the command, dispatch, translate (Req 14.2). Admin-only (Req 14.3) + sensitive rate limiting (Req 14.6).",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /api/Courses/catalog",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Courses/catalog",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Courses",
+                "catalog"
+              ]
+            },
+            "description": "Maps GET /api/Courses/catalog. Anonymous \u2014 pricing pages must render on public marketing routes without a JWT (same waiver as the plan catalog). Course purchase itself remains authenticated in the Orders slice.",
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "DELETE /api/Courses/{id:int}",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Courses/{id:int}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Courses",
+                "{{id}}"
+              ]
+            },
+            "description": "Maps DELETE /api/Courses/{id:int}. Thin: dispatch, then map success to 204 No Content and any failure via the shared translator. Admin-only + sensitive rate limiting."
+          }
+        },
+        {
+          "name": "GET /api/Courses/{id:int}",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Courses/{id:int}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Courses",
+                "{{id}}"
+              ]
+            },
+            "description": "Maps GET /api/Courses/{id:int}. Thin: dispatch \u2192 translate. Admin-only + sensitive rate limiting. Public catalog browsing goes through GET /api/Courses/catalog instead."
+          }
+        },
+        {
+          "name": "PUT /api/Courses/{id:int}",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Courses/{id:int}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Courses",
+                "{{id}}"
+              ]
+            },
+            "description": "Maps PUT /api/Courses/{id:int}. Thin: bind the route id + body, map to the command, dispatch, translate (Req 14.2). Admin-only (Req 14.3) + sensitive rate limiting (Req 14.6).",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Dashboard",
+      "item": [
+        {
+          "name": "GET /api/Dashboard/admin/stats",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Dashboard/admin/stats",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Dashboard",
+                "admin",
+                "stats"
+              ]
+            },
+            "description": "Maps GET /api/Dashboard/admin/stats (route preserved verbatim from the legacy DashboardController, Req 24.2). Thin: bind \u2192 dispatch \u2192 translate (Req 4.2, 4.3). Declares its own authorization decision inline \u2014 Admin only (Req 20.5) \u2014 and preserves the legacy sensitive rate-limiting policy (Req 21). The optional filter query parameter defaults to \"month\" to match the legacy controller signature."
+          }
+        },
+        {
+          "name": "GET /api/Dashboard/admin/student-performance",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Dashboard/admin/student-performance",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Dashboard",
+                "admin",
+                "student-performance"
+              ]
+            },
+            "description": "Maps GET /api/Dashboard/admin/student-performance (route preserved verbatim from the legacy DashboardController, Req 24.2). Thin: dispatch \u2192 translate (Req 4.2, 4.3). Declares its own authorization decision inline \u2014 Admin only (Req 20.5) \u2014 and preserves the legacy sensitive rate-limiting policy (Req 21)."
+          }
+        },
+        {
+          "name": "GET /api/Dashboard/admin/students",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Dashboard/admin/students",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Dashboard",
+                "admin",
+                "students"
+              ]
+            },
+            "description": "Maps GET /api/Dashboard/admin/students (route preserved verbatim from the legacy DashboardController, Req 24.2). Thin: dispatch \u2192 translate (Req 4.2, 4.3). Declares its own authorization decision inline \u2014 Admin only (Req 20.5) \u2014 and preserves the legacy sensitive rate-limiting policy (Req 21). The legacy endpoint returned a bare list with no pagination, so the payload contract is preserved as a list (Req 24.2)."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Interviews",
+      "item": [
+        {
+          "name": "GET /api/Admin/InterviewQuestions",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Admin/InterviewQuestions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Admin",
+                "InterviewQuestions"
+              ]
+            },
+            "description": null
+          }
+        },
+        {
+          "name": "POST /api/Admin/InterviewQuestions",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Admin/InterviewQuestions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Admin",
+                "InterviewQuestions"
+              ]
+            },
+            "description": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "DELETE /api/Admin/InterviewQuestions/{id:int}",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Admin/InterviewQuestions/{id:int}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Admin",
+                "InterviewQuestions",
+                "{{id}}"
+              ]
+            },
+            "description": null
+          }
+        },
+        {
+          "name": "PUT /api/Admin/InterviewQuestions/{id:int}",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Admin/InterviewQuestions/{id:int}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Admin",
+                "InterviewQuestions",
+                "{{id}}"
+              ]
+            },
+            "description": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /api/InterviewQuestions",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/InterviewQuestions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "InterviewQuestions"
+              ]
+            },
+            "description": null,
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "GET /api/Interviews/sessions/me",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Interviews/sessions/me",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Interviews",
+                "sessions",
+                "me"
+              ]
+            },
+            "description": null
+          }
+        },
+        {
+          "name": "POST /api/Interviews/sessions/me",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Interviews/sessions/me",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Interviews",
+                "sessions",
+                "me"
+              ]
+            },
+            "description": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PUT /api/Interviews/sessions/me/{id:int}",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Interviews/sessions/me/{id:int}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Interviews",
+                "sessions",
+                "me",
+                "{{id}}"
+              ]
+            },
+            "description": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Learning",
+      "item": [
+        {
+          "name": "GET /api/Learning/progress/me",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Learning/progress/me",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Learning",
+                "progress",
+                "me"
+              ]
+            },
+            "description": null
+          }
+        },
+        {
+          "name": "GET /api/Learning/progress/summary",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Learning/progress/summary",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Learning",
+                "progress",
+                "summary"
+              ]
+            },
+            "description": null
+          }
+        },
+        {
+          "name": "PUT /api/Learning/progress/{resourceType}/{resourceId:int}",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Learning/progress/{resourceType}/{resourceId:int}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Learning",
+                "progress",
+                "{{resourceType}}",
+                "{{resourceId}}"
+              ]
+            },
+            "description": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "LearningPaths",
+      "item": [
+        {
+          "name": "GET /api/Admin/LearningPaths",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Admin/LearningPaths",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Admin",
+                "LearningPaths"
+              ]
+            },
+            "description": "GET /api/LearningPaths \u2014 public, published only. GET /api/Admin/LearningPaths \u2014 admin, all rows."
+          }
+        },
+        {
+          "name": "POST /api/Admin/LearningPaths",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Admin/LearningPaths",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Admin",
+                "LearningPaths"
+              ]
+            },
+            "description": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "DELETE /api/Admin/LearningPaths/{id:int}",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Admin/LearningPaths/{id:int}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Admin",
+                "LearningPaths",
+                "{{id}}"
+              ]
+            },
+            "description": null
+          }
+        },
+        {
+          "name": "PUT /api/Admin/LearningPaths/{id:int}",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Admin/LearningPaths/{id:int}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Admin",
+                "LearningPaths",
+                "{{id}}"
+              ]
+            },
+            "description": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /api/LearningPaths",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/LearningPaths",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "LearningPaths"
+              ]
+            },
+            "description": "GET /api/LearningPaths \u2014 public, published only. GET /api/Admin/LearningPaths \u2014 admin, all rows.",
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "GET /api/LearningPaths/{slug}",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/LearningPaths/{slug}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "LearningPaths",
+                "{{slug}}"
+              ]
+            },
+            "description": null,
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Meetings",
+      "item": [
+        {
+          "name": "DELETE /api/Dashboard/admin/meetings",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Dashboard/admin/meetings",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Dashboard",
+                "admin",
+                "meetings"
+              ]
+            },
+            "description": "Maps DELETE /api/Dashboard/admin/meetings?id=. Admin-only + sensitive rate limit. The id comes from the query string (matches the existing frontend contract)."
+          }
+        },
+        {
+          "name": "GET /api/Dashboard/admin/meetings",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Dashboard/admin/meetings",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Dashboard",
+                "admin",
+                "meetings"
+              ]
+            },
+            "description": "Maps GET /api/Dashboard/admin/meetings. Admin-only + sensitive rate limit."
+          }
+        },
+        {
+          "name": "POST /api/Dashboard/admin/meetings",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Dashboard/admin/meetings",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Dashboard",
+                "admin",
+                "meetings"
+              ]
+            },
+            "description": "Maps POST /api/Dashboard/admin/meetings. Admin-only + sensitive rate limit. Route path preserved verbatim from the frontend meetingService.scheduleMeeting.",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PUT /api/Dashboard/admin/meetings",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Dashboard/admin/meetings",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Dashboard",
+                "admin",
+                "meetings"
+              ]
+            },
+            "description": "Maps PUT /api/Dashboard/admin/meetings. Meeting id lives in the body (matches the existing frontend contract: { id, ...patch }).",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "MentorPortal",
+      "item": [
+        {
+          "name": "GET /api/Mentor/overview",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Mentor/overview",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Mentor",
+                "overview"
+              ]
+            },
+            "description": null
+          }
+        },
+        {
+          "name": "GET /api/Mentor/profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Mentor/profile",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Mentor",
+                "profile"
+              ]
+            },
+            "description": null
+          }
+        },
+        {
+          "name": "PUT /api/Mentor/profile",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Mentor/profile",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Mentor",
+                "profile"
+              ]
+            },
+            "description": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /api/Mentor/reviews",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Mentor/reviews",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Mentor",
+                "reviews"
+              ]
+            },
+            "description": null
+          }
+        },
+        {
+          "name": "GET /api/Mentor/sessions",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Mentor/sessions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Mentor",
+                "sessions"
+              ]
+            },
+            "description": null
+          }
+        },
+        {
+          "name": "GET /api/Mentor/slots",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Mentor/slots",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Mentor",
+                "slots"
+              ]
+            },
+            "description": null
+          }
+        },
+        {
+          "name": "POST /api/Mentor/slots",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Mentor/slots",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Mentor",
+                "slots"
+              ]
+            },
+            "description": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "DELETE /api/Mentor/slots/{id:int}",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Mentor/slots/{id:int}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Mentor",
+                "slots",
+                "{{id}}"
+              ]
+            },
+            "description": null
+          }
+        },
+        {
+          "name": "GET /api/Mentor/students",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Mentor/students",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Mentor",
+                "students"
+              ]
+            },
+            "description": null
+          }
+        },
+        {
+          "name": "GET /api/Mentor/students/{studentUserId}",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Mentor/students/{studentUserId}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Mentor",
+                "students",
+                "{{studentUserId}}"
+              ]
+            },
+            "description": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "Mentorship",
+      "item": [
+        {
+          "name": "GET /api/Dashboard/admin/mentors",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Dashboard/admin/mentors",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Dashboard",
+                "admin",
+                "mentors"
+              ]
+            },
+            "description": "Maps two GET routes onto the same query: GET /api/Mentorship/mentors \u2014 authenticated catalog (active + verified only) GET /api/Dashboard/admin/mentors \u2014 admin management (every mentor) Both authenticated; admin route additionally requires the Admin role."
+          }
+        },
+        {
+          "name": "POST /api/Dashboard/admin/mentors",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Dashboard/admin/mentors",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Dashboard",
+                "admin",
+                "mentors"
+              ]
+            },
+            "description": "Maps POST /api/Dashboard/admin/mentors. Admin-only + sensitive rate limit.",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PUT /api/Dashboard/admin/mentors",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Dashboard/admin/mentors",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Dashboard",
+                "admin",
+                "mentors"
+              ]
+            },
+            "description": "Maps PUT /api/Dashboard/admin/mentors. Mentor id lives in the body (matches existing frontend contract). Admin-only + sensitive rate limit.",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /api/Mentorship/admin/bookings",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Mentorship/admin/bookings",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Mentorship",
+                "admin",
+                "bookings"
+              ]
+            },
+            "description": "Maps GET /api/Mentorship/admin/bookings. Admin-only + sensitive rate limit."
+          }
+        },
+        {
+          "name": "POST /api/Mentorship/admin/bookings/{id:int}/cancel",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Mentorship/admin/bookings/{id:int}/cancel",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Mentorship",
+                "admin",
+                "bookings",
+                "{{id}}",
+                "cancel"
+              ]
+            },
+            "description": "Maps POST /api/Mentorship/admin/bookings/{id}/cancel. Admin-only + sensitive rate limit.",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /api/Mentorship/admin/slots",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Mentorship/admin/slots",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Mentorship",
+                "admin",
+                "slots"
+              ]
+            },
+            "description": "Maps POST /api/Mentorship/admin/slots. Admin-only + sensitive rate limit.",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "DELETE /api/Mentorship/admin/slots/{id:int}",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Mentorship/admin/slots/{id:int}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Mentorship",
+                "admin",
+                "slots",
+                "{{id}}"
+              ]
+            },
+            "description": "Maps DELETE /api/Mentorship/admin/slots/{id}. Admin-only + sensitive rate limit."
+          }
+        },
+        {
+          "name": "POST /api/Mentorship/book",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Mentorship/book",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Mentorship",
+                "book"
+              ]
+            },
+            "description": "Maps POST /api/Mentorship/book. Authenticated + sensitive rate limit.",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /api/Mentorship/mentors",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Mentorship/mentors",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Mentorship",
+                "mentors"
+              ]
+            },
+            "description": "Maps two GET routes onto the same query: GET /api/Mentorship/mentors \u2014 authenticated catalog (active + verified only) GET /api/Dashboard/admin/mentors \u2014 admin management (every mentor) Both authenticated; admin route additionally requires the Admin role."
+          }
+        },
+        {
+          "name": "GET /api/Mentorship/mentors/{mentorId:int}/slots",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Mentorship/mentors/{mentorId:int}/slots",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Mentorship",
+                "mentors",
+                "{{mentorId}}",
+                "slots"
+              ]
+            },
+            "description": "Maps GET /api/Mentorship/mentors/{mentorId}/slots. Any authenticated caller."
+          }
+        },
+        {
+          "name": "GET /api/Mentorship/my-bookings",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Mentorship/my-bookings",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Mentorship",
+                "my-bookings"
+              ]
+            },
+            "description": "Maps GET /api/Mentorship/my-bookings. Any authenticated caller."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Notifications",
+      "item": [
+        {
+          "name": "POST /api/Admin/PublishNotification",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Admin/PublishNotification",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Admin",
+                "PublishNotification"
+              ]
+            },
+            "description": "Maps POST /api/Admin/PublishNotification. Thin: bind body \u2192 dispatch \u2192 translate. Admin-only + sensitive rate limit. The route path is preserved verbatim from the frontend contract (`endpoints.notifications.publish`).",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /api/Notifications/clear-all",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Notifications/clear-all",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Notifications",
+                "clear-all"
+              ]
+            },
+            "description": "Maps POST /api/Notifications/clear-all. Authenticated + sensitive rate limit.",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /api/Notifications/me",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Notifications/me",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Notifications",
+                "me"
+              ]
+            },
+            "description": "Maps GET /api/Notifications/me. Thin: dispatch \u2192 translate (Req 14.2). Requires an authenticated caller; identity comes from the JWT, never the request (Req 14.4). No sensitive rate limit \u2014 the notification bell polls this on every page render."
+          }
+        },
+        {
+          "name": "POST /api/Notifications/read-all",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Notifications/read-all",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Notifications",
+                "read-all"
+              ]
+            },
+            "description": "Maps POST /api/Notifications/read-all. Authenticated + sensitive rate limit.",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /api/Notifications/{id:int}/read",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Notifications/{id:int}/read",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Notifications",
+                "{{id}}",
+                "read"
+              ]
+            },
+            "description": "Maps POST /api/Notifications/{id:int}/read. Thin: dispatch, map success to 204 No Content (Req 14.2). Authenticated + sensitive rate limit (state-changing write).",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Offers",
+      "item": [
+        {
+          "name": "GET /api/AdminOffer/pending",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/AdminOffer/pending",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "AdminOffer",
+                "pending"
+              ]
+            },
+            "description": "Maps GET /api/AdminOffer/pending (route preserved verbatim from the legacy AdminOfferController, Req 24.2). Thin: dispatch \u2192 translate (Req 4.2, 4.3). Declares its own authorization decision inline \u2014 Admin only (Req 20.5) \u2014 and preserves the legacy sensitive rate-limiting policy (Req 21)."
+          }
+        },
+        {
+          "name": "POST /api/AdminOffer/{id:int}/verify",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/AdminOffer/{id:int}/verify",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "AdminOffer",
+                "{{id}}",
+                "verify"
+              ]
+            },
+            "description": "Maps POST /api/AdminOffer/{id:int}/verify (route preserved verbatim from the legacy AdminOfferController, Req 24.2). Thin: bind the request body, map to the command, dispatch, translate (Req 4.2, 4.3). Declares Admin-only authorization inline (Req 20.5) and preserves the legacy sensitive rate-limiting policy (Req 21). An invalid status is rejected by as a 400 ProblemDetails; an unknown id yields a 404.",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Payments",
+      "item": [
+        {
+          "name": "POST /api/Payment/create-order",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Payment/create-order",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Payment",
+                "create-order"
+              ]
+            },
+            "description": "Maps POST /api/Payment/create-order (route preserved verbatim from the legacy PaymentController, Req 24.2). Thin: bind the command from the body, dispatch, translate (Req 4.2, 4.3). Requires an authenticated caller \u2014 NOT Admin: any signed-in student may create an order (Req 20.5) \u2014 and preserves the legacy sensitive rate-limiting policy (Req 21). The user id is derived from the JWT inside the handler, never from the body.",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /api/Payment/verify",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Payment/verify",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Payment",
+                "verify"
+              ]
+            },
+            "description": "Maps POST /api/Payment/verify (route preserved verbatim from the legacy PaymentController, Req 24.2). Thin: bind the command from the body, dispatch, translate (Req 4.2, 4.3). Requires an authenticated caller \u2014 NOT Admin: any signed-in student verifies their own payment (Req 20.5) \u2014 and preserves the legacy sensitive rate-limiting policy (Req 21). The user id is derived from the JWT inside the handler, never from the body.",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "PlacementCompanies",
+      "item": [
+        {
+          "name": "GET /api/Admin/PlacementCompanies",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Admin/PlacementCompanies",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Admin",
+                "PlacementCompanies"
+              ]
+            },
+            "description": "GET /api/PlacementCompanies \u2014 published catalog, anonymous. GET /api/Admin/PlacementCompanies \u2014 admin management, all rows."
+          }
+        },
+        {
+          "name": "POST /api/Admin/PlacementCompanies",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Admin/PlacementCompanies",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Admin",
+                "PlacementCompanies"
+              ]
+            },
+            "description": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "DELETE /api/Admin/PlacementCompanies/{id:int}",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Admin/PlacementCompanies/{id:int}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Admin",
+                "PlacementCompanies",
+                "{{id}}"
+              ]
+            },
+            "description": null
+          }
+        },
+        {
+          "name": "PUT /api/Admin/PlacementCompanies/{id:int}",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Admin/PlacementCompanies/{id:int}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Admin",
+                "PlacementCompanies",
+                "{{id}}"
+              ]
+            },
+            "description": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /api/PlacementCompanies",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/PlacementCompanies",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "PlacementCompanies"
+              ]
+            },
+            "description": "GET /api/PlacementCompanies \u2014 published catalog, anonymous. GET /api/Admin/PlacementCompanies \u2014 admin management, all rows.",
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "GET /api/PlacementCompanies/{slug}",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/PlacementCompanies/{slug}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "PlacementCompanies",
+                "{{slug}}"
+              ]
+            },
+            "description": null,
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Practice",
+      "item": [
+        {
+          "name": "GET /api/Admin/Practice",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Admin/Practice",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Admin",
+                "Practice"
+              ]
+            },
+            "description": "Two GET routes onto one query \u2014 student catalog and admin management: GET /api/Practice \u2014 published only, anonymous GET /api/Admin/Practice \u2014 every row, Admin only"
+          }
+        },
+        {
+          "name": "POST /api/Admin/Practice",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Admin/Practice",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Admin",
+                "Practice"
+              ]
+            },
+            "description": "Maps POST /api/Admin/Practice. Admin-only + sensitive rate limit.",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "DELETE /api/Admin/Practice/{id:int}",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Admin/Practice/{id:int}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Admin",
+                "Practice",
+                "{{id}}"
+              ]
+            },
+            "description": "Maps DELETE /api/Admin/Practice/{id:int}. Admin-only + sensitive rate limit."
+          }
+        },
+        {
+          "name": "PUT /api/Admin/Practice/{id:int}",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Admin/Practice/{id:int}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Admin",
+                "Practice",
+                "{{id}}"
+              ]
+            },
+            "description": "Maps PUT /api/Admin/Practice/{id:int}. Admin-only + sensitive rate limit.",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /api/Practice",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Practice",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Practice"
+              ]
+            },
+            "description": "Two GET routes onto one query \u2014 student catalog and admin management: GET /api/Practice \u2014 published only, anonymous GET /api/Admin/Practice \u2014 every row, Admin only",
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "GET /api/Practice/bookmarks/me",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Practice/bookmarks/me",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Practice",
+                "bookmarks",
+                "me"
+              ]
+            },
+            "description": null
+          }
+        },
+        {
+          "name": "DELETE /api/Practice/bookmarks/{questionId:int}",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Practice/bookmarks/{questionId:int}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Practice",
+                "bookmarks",
+                "{{questionId}}"
+              ]
+            },
+            "description": "Two routes hit this handler: POST /api/Practice/bookmarks/{questionId} \u2014 sets On=true, optional notes body. DELETE /api/Practice/bookmarks/{questionId} \u2014 sets On=false. Both are idempotent so the frontend can fire-and-forget without checking prior state."
+          }
+        },
+        {
+          "name": "POST /api/Practice/bookmarks/{questionId:int}",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Practice/bookmarks/{questionId:int}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Practice",
+                "bookmarks",
+                "{{questionId}}"
+              ]
+            },
+            "description": "Two routes hit this handler: POST /api/Practice/bookmarks/{questionId} \u2014 sets On=true, optional notes body. DELETE /api/Practice/bookmarks/{questionId} \u2014 sets On=false. Both are idempotent so the frontend can fire-and-forget without checking prior state.",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /api/Practice/{slug}",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Practice/{slug}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Practice",
+                "{{slug}}"
+              ]
+            },
+            "description": "Maps GET /api/Practice/{slug}. Anonymous \u2014 public detail page.",
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Resumes",
+      "item": [
+        {
+          "name": "GET /api/Admin/ResumeTemplates",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Admin/ResumeTemplates",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Admin",
+                "ResumeTemplates"
+              ]
+            },
+            "description": null
+          }
+        },
+        {
+          "name": "POST /api/Admin/ResumeTemplates",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Admin/ResumeTemplates",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Admin",
+                "ResumeTemplates"
+              ]
+            },
+            "description": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "DELETE /api/Admin/ResumeTemplates/{id:int}",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Admin/ResumeTemplates/{id:int}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Admin",
+                "ResumeTemplates",
+                "{{id}}"
+              ]
+            },
+            "description": null
+          }
+        },
+        {
+          "name": "PUT /api/Admin/ResumeTemplates/{id:int}",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Admin/ResumeTemplates/{id:int}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Admin",
+                "ResumeTemplates",
+                "{{id}}"
+              ]
+            },
+            "description": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /api/Admin/StudentResumes",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Admin/StudentResumes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Admin",
+                "StudentResumes"
+              ]
+            },
+            "description": null
+          }
+        },
+        {
+          "name": "PUT /api/Admin/StudentResumes/{id:int}/assign-mentor",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Admin/StudentResumes/{id:int}/assign-mentor",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Admin",
+                "StudentResumes",
+                "{{id}}",
+                "assign-mentor"
+              ]
+            },
+            "description": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /api/Admin/StudentResumes/{id:int}/download",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Admin/StudentResumes/{id:int}/download",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Admin",
+                "StudentResumes",
+                "{{id}}",
+                "download"
+              ]
+            },
+            "description": "Two routes share this handler: - GET /api/Admin/StudentResumes/{id}/download \u2014 Admin, any resume. - GET /api/Mentor/StudentResumes/{id}/download \u2014 Mentor, only if assigned. The handler receives an allowAdmin flag from the route so it can short-circuit the ownership check for admins without duplicating the streaming logic."
+          }
+        },
+        {
+          "name": "GET /api/Mentor/StudentResumes",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Mentor/StudentResumes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Mentor",
+                "StudentResumes"
+              ]
+            },
+            "description": null
+          }
+        },
+        {
+          "name": "GET /api/Mentor/StudentResumes/{id:int}/download",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Mentor/StudentResumes/{id:int}/download",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Mentor",
+                "StudentResumes",
+                "{{id}}",
+                "download"
+              ]
+            },
+            "description": "Two routes share this handler: - GET /api/Admin/StudentResumes/{id}/download \u2014 Admin, any resume. - GET /api/Mentor/StudentResumes/{id}/download \u2014 Mentor, only if assigned. The handler receives an allowAdmin flag from the route so it can short-circuit the ownership check for admins without duplicating the streaming logic."
+          }
+        },
+        {
+          "name": "GET /api/ResumeTemplates",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/ResumeTemplates",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ResumeTemplates"
+              ]
+            },
+            "description": null
+          }
+        },
+        {
+          "name": "GET /api/Resumes/me",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Resumes/me",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Resumes",
+                "me"
+              ]
+            },
+            "description": null
+          }
+        },
+        {
+          "name": "POST /api/Resumes/me",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Resumes/me",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Resumes",
+                "me"
+              ]
+            },
+            "description": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "DELETE /api/Resumes/me/current",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Resumes/me/current",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Resumes",
+                "me",
+                "current"
+              ]
+            },
+            "description": null
+          }
+        },
+        {
+          "name": "GET /api/Resumes/me/current",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Resumes/me/current",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Resumes",
+                "me",
+                "current"
+              ]
+            },
+            "description": null
+          }
+        },
+        {
+          "name": "POST /api/Resumes/me/upload-pdf",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Resumes/me/upload-pdf",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Resumes",
+                "me",
+                "upload-pdf"
+              ]
+            },
+            "description": "Maps POST /api/Resumes/me/upload-pdf. Multipart file field must be a application/pdf \u2264 1 MB. Authenticated (any student) + sensitive rate limit.",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "DELETE /api/Resumes/me/{id:int}",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Resumes/me/{id:int}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Resumes",
+                "me",
+                "{{id}}"
+              ]
+            },
+            "description": null
+          }
+        },
+        {
+          "name": "PUT /api/Resumes/me/{id:int}",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Resumes/me/{id:int}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Resumes",
+                "me",
+                "{{id}}"
+              ]
+            },
+            "description": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Settings",
+      "item": [
+        {
+          "name": "GET /api/Admin/Settings",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Admin/Settings",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Admin",
+                "Settings"
+              ]
+            },
+            "description": "Maps GET /api/Admin/Settings with an optional ?category= filter. Admin-only + sensitive rate limit. Thin: bind \u2192 dispatch \u2192 translate (Req 14.2)."
+          }
+        },
+        {
+          "name": "PUT /api/Admin/Settings",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Admin/Settings",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Admin",
+                "Settings"
+              ]
+            },
+            "description": "Maps PUT /api/Admin/Settings. Admin-only + sensitive rate limit. Thin: bind body \u2192 map to command \u2192 dispatch \u2192 translate (Req 14.2).",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "SubscriptionPlans",
+      "item": [
+        {
+          "name": "GET /api/SubscriptionPlans",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/SubscriptionPlans",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "SubscriptionPlans"
+              ]
+            },
+            "description": "Maps GET /api/SubscriptionPlans. Thin: bind optional page/pageSize query params, dispatch, translate (Req 14.2). Admin-only (Req 14.3) + sensitive rate limiting (Req 14.6)."
+          }
+        },
+        {
+          "name": "POST /api/SubscriptionPlans",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/SubscriptionPlans",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "SubscriptionPlans"
+              ]
+            },
+            "description": "Maps POST /api/SubscriptionPlans. Thin: bind the request body, map to the command, dispatch, translate (Req 14.2). Admin-only (Req 2.6, 14.3) + sensitive rate limiting (Req 14.6).",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /api/SubscriptionPlans/catalog",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/SubscriptionPlans/catalog",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "SubscriptionPlans",
+                "catalog"
+              ]
+            },
+            "description": "Maps GET /api/SubscriptionPlans/catalog. Thin: dispatch the parameterless query and translate (Req 14.2). Requires an authenticated caller \u2014 NOT Admin: any signed-in student may browse the active catalog (Req 6.4). This is a simple read, so it carries no Sensitive rate limit (only the checkout/verify payment slices do, Req 14.6).",
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "GET /api/SubscriptionPlans/entitlement",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/SubscriptionPlans/entitlement",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "SubscriptionPlans",
+                "entitlement"
+              ]
+            },
+            "description": "Maps GET /api/SubscriptionPlans/entitlement. Thin: dispatch the parameterless query and translate (Req 14.2). Requires an authenticated caller \u2014 any signed-in student may read their own effective plan; the identity comes from the JWT, never the request (Req 12, 14.4). This is a simple read, so it carries no Sensitive rate limit."
+          }
+        },
+        {
+          "name": "DELETE /api/SubscriptionPlans/{id:int}",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/SubscriptionPlans/{id:int}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "SubscriptionPlans",
+                "{{id}}"
+              ]
+            },
+            "description": "Maps DELETE /api/SubscriptionPlans/{id:int}. Thin: dispatch, then map success to 204 No Content and any failure via the shared translator (Req 14.2). Admin-only (Req 5.4, 14.3) + sensitive rate limiting (Req 14.6)."
+          }
+        },
+        {
+          "name": "GET /api/SubscriptionPlans/{id:int}",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/SubscriptionPlans/{id:int}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "SubscriptionPlans",
+                "{{id}}"
+              ]
+            },
+            "description": "Maps GET /api/SubscriptionPlans/{id:int}. Thin: dispatch \u2192 translate (Req 14.2). Admin-only (Req 14.3) + sensitive rate limiting (Req 14.6)."
+          }
+        },
+        {
+          "name": "PUT /api/SubscriptionPlans/{id:int}",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/SubscriptionPlans/{id:int}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "SubscriptionPlans",
+                "{{id}}"
+              ]
+            },
+            "description": "Maps PUT /api/SubscriptionPlans/{id:int}. Thin: bind the route id + body, map to the command, dispatch, translate (Req 14.2). Admin-only (Req 3.7, 14.3) + sensitive rate limiting (Req 14.6).",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PUT /api/SubscriptionPlans/{id:int}/active",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/SubscriptionPlans/{id:int}/active",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "SubscriptionPlans",
+                "{{id}}",
+                "active"
+              ]
+            },
+            "description": "Maps PUT /api/SubscriptionPlans/{id:int}/active. Thin: bind the route id + body, map to the command, dispatch, translate (Req 14.2). Admin-only (Req 4.5, 14.3) + sensitive rate limiting (Req 14.6).",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Support",
+      "item": [
+        {
+          "name": "GET /api/Admin/Support/tickets",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Admin/Support/tickets",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Admin",
+                "Support",
+                "tickets"
+              ]
+            },
+            "description": null
+          }
+        },
+        {
+          "name": "GET /api/Admin/Support/tickets/{id:int}",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Admin/Support/tickets/{id:int}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Admin",
+                "Support",
+                "tickets",
+                "{{id}}"
+              ]
+            },
+            "description": null
+          }
+        },
+        {
+          "name": "POST /api/Admin/Support/tickets/{id:int}/messages",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Admin/Support/tickets/{id:int}/messages",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Admin",
+                "Support",
+                "tickets",
+                "{{id}}",
+                "messages"
+              ]
+            },
+            "description": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PUT /api/Admin/Support/tickets/{id:int}/status",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Admin/Support/tickets/{id:int}/status",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Admin",
+                "Support",
+                "tickets",
+                "{{id}}",
+                "status"
+              ]
+            },
+            "description": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /api/Support/tickets",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Support/tickets",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Support",
+                "tickets"
+              ]
+            },
+            "description": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /api/Support/tickets/me",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Support/tickets/me",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Support",
+                "tickets",
+                "me"
+              ]
+            },
+            "description": null
+          }
+        },
+        {
+          "name": "GET /api/Support/tickets/{id:int}",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Support/tickets/{id:int}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Support",
+                "tickets",
+                "{{id}}"
+              ]
+            },
+            "description": null
+          }
+        },
+        {
+          "name": "POST /api/Support/tickets/{id:int}/messages",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Support/tickets/{id:int}/messages",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Support",
+                "tickets",
+                "{{id}}",
+                "messages"
+              ]
+            },
+            "description": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "POST /api/Auth/sync",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Auth/sync",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Auth",
+                "sync"
+              ]
+            },
+            "description": "Maps POST /api/Auth/sync. Thin: bind the request body, dispatch, translate (Req 14.2). Requires an authenticated caller \u2014 the JWT subject is the source of truth for identity (Req 14.4). Called by the frontend right after Supabase sign-in / sign-up to guarantee the application database has a matching UserProfile row. Sensitive rate limit because it writes.",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /api/me",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/me",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "me"
+              ]
+            },
+            "description": "Maps GET /api/me. Thin: dispatch the parameterless query and translate (Req 14.2). Requires an authenticated caller \u2014 any signed-in user may read their own profile; the identity comes from the JWT, never the request (Req 14.4). A simple read, so no sensitive rate limit."
+          }
+        },
+        {
+          "name": "PUT /api/me",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/me",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "me"
+              ]
+            },
+            "description": "Maps PUT /api/me. Thin: bind the request body, map to the command, dispatch, translate (Req 14.2). Requires an authenticated caller \u2014 any signed-in user may update their own profile; the identity comes from the JWT, never the request (Req 14.4). Carries the sensitive rate limit as a state-changing self-service write (Req 14.6).",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /api/me/password",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/me/password",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "me",
+                "password"
+              ]
+            },
+            "description": "Maps POST /api/me/password. Authenticated + sensitive rate limit (state-changing write, resistance to brute-force against the current-password field). Applies to every signed-in role \u2014 the settings page uses the same call for students, mentors, and admins.",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

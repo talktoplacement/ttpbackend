@@ -1,0 +1,42 @@
+<Project>
+
+  <!--
+    Repository-wide build properties. Imported automatically by every project whose
+    directory is at or below this file (src/CareerPlatform.Api and tests/*, plus the
+    legacy backend.csproj). The sibling backend.Tests project lives outside this tree
+    and is intentionally unaffected.
+
+    Runtime note: only the .NET 10 SDK is installed on build hosts; projects target
+    net8.0. Build/test commands run with DOTNET_ROLL_FORWARD=Major so the net8.0 test
+    host executes on the .NET 10 runtime, e.g.:
+
+        DOTNET_ROLL_FORWARD=Major dotnet build CareerPlatform.sln
+        DOTNET_ROLL_FORWARD=Major dotnet test  backend.sln
+
+    CI sets DOTNET_ROLL_FORWARD=Major in the environment.
+  -->
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <!-- Analyzers on by default; kept at a level that does not flood the legacy project. -->
+  <PropertyGroup>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <AnalysisLevel>latest</AnalysisLevel>
+    <EnforceCodeStyleInBuild>false</EnforceCodeStyleInBuild>
+  </PropertyGroup>
+
+  <!--
+    Warnings-as-errors is gated behind CI only. It defaults OFF locally so the legacy
+    backend project (which still emits warnings) continues to build. CI sets
+    ContinuousIntegrationBuild=true.
+  -->
+  <PropertyGroup Condition="'$(ContinuousIntegrationBuild)' == 'true'">
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+</Project>

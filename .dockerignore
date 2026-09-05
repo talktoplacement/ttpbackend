@@ -1,0 +1,43 @@
+# Build artefacts
+**/bin/
+**/obj/
+**/out/
+**/publish/
+
+# IDE / editor
+**/.vs/
+**/.vscode/
+**/.idea/
+**/.kiro/
+**/*.user
+**/*.suo
+
+# OS
+**/.DS_Store
+**/Thumbs.db
+
+# VCS
+.git/
+.gitignore
+.gitattributes
+
+# Local dev secrets — never bake into the image
+**/appsettings.Development.json
+**/appsettings.Local.json
+**/Properties/launchSettings.json
+**/.env
+**/.env.*
+**/*.pfx
+**/*.key
+
+# Tests are not needed for the runtime image
+tests/
+
+# Misc
+**/*.log
+**/TestResults/
+**/coverage*
+Dockerfile
+.dockerignore
+docs/
+scripts/
