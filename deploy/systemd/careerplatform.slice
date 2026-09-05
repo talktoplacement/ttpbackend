@@ -1,0 +1,70 @@
+# -----------------------------------------------------------------------------
+# cgroup slice that reserves a hard 2 GB portion of this 8 GB VPS for the
+# CareerPlatform stack.
+#
+# Why a slice and not just per-container mem_limit:
+#   Per-container limits in docker-compose.prod.yml cap each container
+#   INDIVIDUALLY. Their sum is a ceiling only if you keep the arithmetic right by
+#   hand, and adding a service (or running a one-off `docker compose run`) quietly
+#   raises the total. This slice caps the WHOLE GROUP, so no combination of
+#   containers in this project can ever exceed 2 GB and starve the two other
+#   projects on the box. The per-container limits stay useful underneath: they
+#   decide WHICH container dies when this project misbehaves, instead of leaving
+#   the kernel to pick.
+#
+# Install:
+#   sudo cp careerplatform.slice /etc/systemd/system/careerplatform.slice
+#   sudo systemctl daemon-reload
+#   sudo systemctl start careerplatform.slice
+#
+# Inspect at runtime:
+#   systemctl status careerplatform.slice
+#   systemd-cgtop /careerplatform.slice
+#   cat /sys/fs/cgroup/careerplatform.slice/memory.max      # expect 2147483648
+#   cat /sys/fs/cgroup/careerplatform.slice/memory.peak     # high-water mark
+#
+# Requires cgroup v2 and Docker's systemd cgroup driver. Verify BOTH before use:
+#   stat -fc %T /sys/fs/cgroup            # want: cgroup2fs
+#   docker info | grep -i "cgroup"        # want: Driver: systemd, Version: 2
+# -----------------------------------------------------------------------------
+
+[Unit]
+Description=CareerPlatform API resource slice (2 GB of 8 GB)
+Documentation=file:///opt/careerplatform/docker-compose.prod.yml
+Before=docker.service
+
+[Slice]
+# ── Memory ───────────────────────────────────────────────────────────────────
+# MemoryMax is the hard wall: the kernel OOM-kills inside this slice rather than
+# reclaiming from the neighbouring projects.
+MemoryMax=2G
+
+# Soft limit hit first. Above this the kernel aggressively reclaims from this
+# slice while still allowing brief spikes, which turns most would-be OOM kills
+# into a short latency blip instead of a dropped container.
+MemoryHigh=1792M
+
+# Guaranteed floor. This much is protected from reclaim even when the rest of the
+# VPS is under pressure, so the other two projects cannot starve the API either.
+# Protection runs both ways.
+MemoryMin=256M
+
+# Never let this project push its pages into swap and thrash a disk shared with
+# the other projects. Fail fast instead.
+MemorySwapMax=0
+
+# ── CPU ──────────────────────────────────────────────────────────────────────
+# 150% = 1.5 cores of the 8 available. Prevents a runaway build or a hot request
+# loop from making the other projects unresponsive.
+CPUQuota=150%
+# Relative weight under contention (default 100). Lower than default so the
+# established projects win a tie.
+CPUWeight=80
+
+# ── I/O ──────────────────────────────────────────────────────────────────────
+IOWeight=80
+
+# ── Process count ────────────────────────────────────────────────────────────
+# Bounds fork-bomb blast radius, which matters if you later enable the Piston
+# sandbox and run untrusted submitted code.
+TasksMax=1024

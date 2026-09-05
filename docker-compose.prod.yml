@@ -1,173 +1,218 @@
-# ============================================================================
-# Production compose — Hostinger VPS (2 GB RAM).
+# -----------------------------------------------------------------------------
+# Production stack for the Hostinger VPS.
 #
-# Only the backend runs here. Frontend is on Vercel, Postgres is on Supabase,
-# so the VPS has ~1.5 GB free after OS + Docker overhead — plenty for a single
-# .NET 8 API container.
+# Sized to stay inside a ~2 GB slice of an 8 GB box that already hosts two other
+# projects. Every service has a hard memory ceiling so a leak or a traffic spike
+# here can never starve the neighbours — Docker OOM-kills the offending
+# container instead of letting the kernel pick a victim at random.
 #
-# Topology:
-#   Browser → Vercel (frontend)
-#          └→ Cloudflare (proxied) → Nginx (host :443) → backend (Docker :8080)
-#                                                            └→ Supabase (SSL)
-#                                                            └→ Brevo API
-#                                                            └→ Razorpay API
-#                                                            └→ Gmail SMTP
+#   docker compose -f docker-compose.prod.yml --env-file .env.prod up -d
 #
-# Env vars come from `.env.prod` next to this file (see .env.prod.example).
-# ============================================================================
+# Profiles
+#   (default)  api only — binds 127.0.0.1 for the host's EXISTING nginx. This is
+#              the profile this VPS uses: nginx already owns 80/443.
+#   edge       api + caddy. NOT used here; kept for a host with no proxy yet.
+#   sandbox    adds Piston for coding questions. Read the memory note first.
+#
+# Memory ceilings (sum of limits, not typical usage):
+#   api 1024M + caddy 96M                    = 1.1 GB   <- recommended
+#   api  768M + caddy 96M + piston 768M      = 1.6 GB   <- with sandbox, tight
+# -----------------------------------------------------------------------------
+
+name: careerplatform
 
 services:
-  backend:
+  api:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    image: careerplatform-backend:latest
-    container_name: careerplatform_backend
+    image: careerplatform-api:latest
     restart: unless-stopped
+
+    # Published on loopback only. The internet reaches this through the host's
+    # nginx, so the container is never directly exposed and the port cannot
+    # collide with the other projects' public listeners.
+    #
+    # Default is 8081, not 8080: on this VPS 8080 is already held by another
+    # project's Java process.
+    ports:
+      - "127.0.0.1:${API_HOST_PORT:-8081}:8080"
 
     environment:
       ASPNETCORE_ENVIRONMENT: Production
       ASPNETCORE_URLS: http://+:8080
-      # Cap the managed heap on the 2 GB VPS. 0x18000000 = 384 MB.
-      DOTNET_GCHeapHardLimit: "0x18000000"
+
+      # ── Memory containment ──────────────────────────────────────────────────
+      # The ASP.NET Web SDK turns on Server GC by default, which reserves a
+      # separate heap per logical core. On this 8-core VPS that is the single
+      # largest source of idle RSS. Workstation GC uses one heap and cuts the
+      # baseline by roughly half at a small throughput cost that is irrelevant at
+      # this traffic level.
       DOTNET_gcServer: "0"
+      # Trades CPU for a smaller footprint (0 = off, 9 = most aggressive).
+      DOTNET_GCConserveMemory: "5"
+      # .NET reads the cgroup limit below and caps its heap at 75% of it, so the
+      # runtime backs off before Docker has to kill anything.
+      DOTNET_GCHeapHardLimitPercent: "50"
 
-      # ── Supabase Postgres (session pooler, port 5432) ───────────────────
-      # Use the session pooler URL, NOT the transaction pooler (6543) — Npgsql
-      # uses prepared statements which the transaction pooler doesn't support.
-      # `Search Path` confines the app to its own schema. Required when the database
-      # is shared with another application — six table names in schema.sql are generic
-      # enough to collide, and CREATE TABLE IF NOT EXISTS would silently skip them,
-      # leaving the app bound to a foreign table. Defaults to `public`.
+      # ── Database (Supabase Postgres) ────────────────────────────────────────
+      # Npgsql keyword form rather than a URI: the password goes in verbatim, so
+      # characters like @ : / ? # cannot corrupt the parse.
+      #
+      # Max Pool Size is deliberately modest — Supabase caps concurrent pooler
+      # connections, and every pooled connection costs memory on both ends.
       ConnectionStrings__DefaultConnection: >-
-        Host=${SUPABASE_HOST};Port=${SUPABASE_PORT:-5432};Database=${SUPABASE_DB:-postgres};Username=${SUPABASE_USER};Password=${SUPABASE_PASSWORD};SSL Mode=Require;Trust Server Certificate=true;Include Error Detail=false;Search Path=${DATABASE_SCHEMA:-public}
-      ConnectionStrings__Redis: ""
+        Host=${SUPABASE_HOST};Port=${SUPABASE_PORT:-5432};Database=${SUPABASE_DB:-postgres};Username=${SUPABASE_USER};Password=${SUPABASE_PASSWORD};SSL Mode=Require;Trust Server Certificate=${DATABASE_TRUST_SERVER_CERTIFICATE:-false};Pooling=true;Minimum Pool Size=0;Maximum Pool Size=${DB_MAX_POOL_SIZE:-15};Connection Idle Lifetime=60;Search Path=${DATABASE_SCHEMA:-public}
+      ConnectionStrings__Redis: disabled
 
-      # ── JWT ─────────────────────────────────────────────────────────────
-      Jwt__Issuer:   ${JWT_ISSUER}
+      # ── Auth ────────────────────────────────────────────────────────────────
+      # This API mints its own tokens (Infrastructure/Security/JwtIssuer.cs), so
+      # the issuer is THIS service, not Supabase. Supabase is only Postgres here.
+      Jwt__Issuer: ${JWT_ISSUER}
       Jwt__Audience: ${JWT_AUDIENCE:-authenticated}
-      Jwt__Secret:   ${JWT_SECRET}
+      Jwt__Secret: ${JWT_SECRET}
 
-      # ── Razorpay ────────────────────────────────────────────────────────
-      Razorpay__KeyId:     ${RAZORPAY_KEY_ID}
-      Razorpay__KeySecret: ${RAZORPAY_KEY_SECRET}
-
-      # ── Brevo (ALL outbound email: OTP, password reset, admin/promo) ────
-      Brevo__ApiKey:        ${BREVO_API_KEY}
-      Brevo__SenderEmail:   ${BREVO_SENDER_EMAIL}
-      Brevo__SenderName:    ${BREVO_SENDER_NAME:-CareerPlatform}
-      Brevo__OtpTemplateId: ${BREVO_OTP_TEMPLATE_ID:-}
-
-      # ── CORS — Vercel origin(s) ─────────────────────────────────────────
-      Cors__AllowedOrigins__0: ${FRONTEND_ORIGIN}
-      Cors__AllowedOrigins__1: ${FRONTEND_ORIGIN_PREVIEW:-}
-      # Per-commit Vercel preview hostnames cannot be enumerated; allow them by
-      # team-scoped host suffix. Leave empty to allow production origins only.
-      Cors__AllowedOriginSuffixes__0: ${FRONTEND_PREVIEW_SUFFIX:-}
-
-      # ── Session cookie — Vercel and this API are DIFFERENT sites ────────
-      # SameSite=None is mandatory here: with Lax the browser refuses to send
-      # the cookie on cross-site fetches, so login would appear to succeed and
-      # every following request would 401. None requires Secure, hence
-      # AlwaysSecure — which also protects against a missing X-Forwarded-Proto
-      # on the Nginx → container hop.
+      # Vercel and this API are different sites, so the session cookie must be
+      # SameSite=None + Secure or the browser silently drops it on every
+      # cross-site request: login appears to work, then everything 401s.
       AuthCookie__SameSite: ${AUTH_COOKIE_SAMESITE:-None}
       AuthCookie__AlwaysSecure: ${AUTH_COOKIE_ALWAYS_SECURE:-true}
       AuthCookie__Partitioned: ${AUTH_COOKIE_PARTITIONED:-false}
 
-      # ── Code-execution sandbox (assessment coding questions) ───────────
-      # Reachable over the implicit compose network. Set Provider=Disabled to
-      # turn coding questions off; MCQ assessments are unaffected.
-      CodeExecution__Provider: ${CODE_EXECUTION_PROVIDER:-Piston}
-      CodeExecution__BaseUrl: ${CODE_EXECUTION_BASE_URL:-http://piston:2000}
+      # ── CORS ────────────────────────────────────────────────────────────────
+      Cors__AllowedOrigins__0: ${FRONTEND_ORIGIN}
+      Cors__AllowedOrigins__1: ${FRONTEND_ORIGIN_PREVIEW:-}
+      # Vercel gives every preview deployment its own hostname, so exact origins
+      # cannot cover them. Match on a team-scoped host suffix instead.
+      Cors__AllowedOriginSuffixes__0: ${FRONTEND_PREVIEW_SUFFIX:-}
 
-    # Bind only to loopback; nginx on the host is the sole public entry point.
-    ports:
-      - "127.0.0.1:8080:8080"
+      # ── Payments ────────────────────────────────────────────────────────────
+      Razorpay__KeyId: ${RAZORPAY_KEY_ID}
+      Razorpay__KeySecret: ${RAZORPAY_KEY_SECRET}
+
+      # ── Email (Brevo) ───────────────────────────────────────────────────────
+      Brevo__ApiKey: ${BREVO_API_KEY}
+      Brevo__SenderEmail: ${BREVO_SENDER_EMAIL}
+      Brevo__SenderName: ${BREVO_SENDER_NAME:-CareerPlatform}
+      Brevo__OtpTemplateId: ${BREVO_OTP_TEMPLATE_ID:-}
+      Otp__HashKey: ${OTP_HASH_KEY}
+
+      # ── Code execution ──────────────────────────────────────────────────────
+      # Defaults to Disabled so the base stack stays inside its memory budget.
+      # MCQ assessments work normally; the runner hides the Run button and coding
+      # questions score 0 with the gap shown on the scorecard.
+      CodeExecution__Provider: ${CODE_EXECUTION_PROVIDER:-Disabled}
+      CodeExecution__BaseUrl: ${CODE_EXECUTION_BASE_URL:-}
+
+      # ── File storage ────────────────────────────────────────────────────────
+      # Uploaded resumes land on local disk (LocalFileStorage). Its default root is
+      # AppContext.BaseDirectory/storage — i.e. /app/storage INSIDE the container,
+      # which is ephemeral: every rebuild or `up --force-recreate` would silently
+      # discard every uploaded file. Pinned to an explicit path backed by the named
+      # volume below so uploads survive redeploys.
+      Storage__Provider: ${STORAGE_PROVIDER:-Local}
+      Storage__LocalPath: /app/storage
+
+    volumes:
+      - api_storage:/app/storage
+
+    # Places the container inside the 2 GB systemd slice
+    # (deploy/systemd/careerplatform.slice). The slice caps this project as a
+    # GROUP; the per-container limits below decide which container dies first if
+    # that cap is reached.
+    cgroup_parent: ${CGROUP_PARENT:-careerplatform.slice}
+
+    mem_limit: ${API_MEM_LIMIT:-1024m}
+    mem_reservation: 256m
+    # Without this, a container hitting its memory ceiling can swap-thrash the
+    # whole host instead of failing fast.
+    memswap_limit: ${API_MEM_LIMIT:-1024m}
+    cpus: ${API_CPUS:-1.5}
 
     healthcheck:
       test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:8080/health/live"]
       interval: 30s
       timeout: 5s
+      start_period: 40s
       retries: 3
-      start_period: 30s
 
-    deploy:
-      resources:
-        limits:
-          memory: 700M
-
-    logging:
+    logging: &default_logging
       driver: json-file
       options:
+        # Unbounded container logs are a slow disk leak. Cap and rotate.
         max-size: "10m"
         max-file: "3"
 
-  # ── Code-execution sandbox ────────────────────────────────────────────────
-  # Runs untrusted student code for assessment coding questions.
+    networks:
+      - careerplatform
+
+  # ---------------------------------------------------------------------------
+  # TLS terminator. Only start this if nothing else on the VPS owns 80/443:
+  #   docker compose -f docker-compose.prod.yml --profile edge up -d
+  # Caddy obtains and renews Let's Encrypt certificates automatically, which the
+  # Secure cookie above depends on — over plain HTTP the browser will not send it.
+  # ---------------------------------------------------------------------------
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    profiles: ["edge"]
+    depends_on:
+      - api
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    environment:
+      API_DOMAIN: ${API_DOMAIN}
+      ACME_EMAIL: ${ACME_EMAIL}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    cgroup_parent: ${CGROUP_PARENT:-careerplatform.slice}
+    mem_limit: 96m
+    mem_reservation: 32m
+    logging: *default_logging
+    networks:
+      - careerplatform
+
+  # ---------------------------------------------------------------------------
+  # Code-execution sandbox. OPT-IN:
+  #   docker compose -f docker-compose.prod.yml --profile sandbox up -d
   #
-  # MEMORY: this box has ~1.5 GB free and the backend is capped at 700M, so
-  # Piston gets 500M. That is enough for interpreted languages (Python, Node)
-  # and light JVM/C++ work at low concurrency. If you see OOM kills, either
-  # raise the VPS tier or point CodeExecution__BaseUrl at a Piston instance on
-  # a separate host — the backend only needs an HTTP URL, so moving it is a
-  # config change with no code impact.
-  #
-  # SECURITY: `privileged: true` is required (Piston builds per-language jails)
-  # and is a real blast-radius increase on a host that also terminates API
-  # traffic. It is NOT published to the internet — no `ports` mapping, so it is
-  # reachable only from the backend container over the compose network. Never
-  # add a host port binding for it.
+  # Memory warning: Piston spawns a fresh runtime per submission. Python and Node
+  # fit the 768M ceiling; a JVM run does not reliably, so install only the light
+  # runtimes (step 9 of the guide) and drop java/cpp from application.properties.
+  # If you need the full language matrix, run Piston on a different host and point
+  # CODE_EXECUTION_BASE_URL at it instead.
+  # ---------------------------------------------------------------------------
   piston:
     image: ghcr.io/engineer-man/piston:latest
-    container_name: careerplatform_piston
     restart: unless-stopped
+    profiles: ["sandbox"]
+    # Piston isolates untrusted code with its own namespaces, which needs
+    # elevated privileges. It is reachable only from the internal compose
+    # network — never publish this port.
     privileged: true
-    # Deliberately no `ports:` — internal access only.
-    expose:
-      - "2000"
+    tmpfs:
+      - /tmp:exec,size=256M
     volumes:
       - piston_packages:/piston/packages
-    healthcheck:
-      test: ["CMD-SHELL", "wget --spider -q http://127.0.0.1:2000/api/v2/runtimes || exit 1"]
-      interval: 30s
-      timeout: 5s
-      retries: 3
-      start_period: 30s
-    deploy:
-      resources:
-        limits:
-          memory: 500M
-    logging:
-      driver: json-file
-      options:
-        max-size: "10m"
-        max-file: "3"
+    cgroup_parent: ${CGROUP_PARENT:-careerplatform.slice}
+    mem_limit: ${PISTON_MEM_LIMIT:-768m}
+    memswap_limit: ${PISTON_MEM_LIMIT:-768m}
+    cpus: ${PISTON_CPUS:-1.0}
+    logging: *default_logging
+    networks:
+      - careerplatform
 
-  # One-shot language installer; exits after installing. Versions MUST match
-  # codeExecution.languages.* in backend/application.properties.
-  # Run after first deploy and after changing that list:
-  #   docker compose -f docker-compose.prod.yml run --rm piston-init
-  piston-init:
-    image: curlimages/curl:latest
-    container_name: careerplatform_piston_init
-    depends_on:
-      piston:
-        condition: service_healthy
-    restart: "no"
-    entrypoint: ["/bin/sh", "-c"]
-    command:
-      - |
-        set -eu
-        for pkg in "python 3.10.0" "javascript 18.15.0" "java 15.0.2" "c++ 10.2.0"; do
-          name=$${pkg% *}; version=$${pkg#* }
-          echo "Installing $$name $$version ..."
-          curl -sS -X POST http://piston:2000/api/v2/packages \
-            -H 'Content-Type: application/json' \
-            -d "{\"language\":\"$$name\",\"version\":\"$$version\"}" || true
-        done
-        echo "Installed runtimes:"
-        curl -sS http://piston:2000/api/v2/runtimes
+networks:
+  careerplatform:
+    driver: bridge
 
 volumes:
+  # Uploaded resumes/PDFs. Back this up — it is the only state not in Supabase.
+  api_storage:
+  caddy_data:
+  caddy_config:
   piston_packages:
