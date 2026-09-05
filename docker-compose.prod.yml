@@ -24,7 +24,16 @@ name: careerplatform
 services:
   api:
     build:
-      context: ./backend
+      # Path to the backend package (the directory holding its Dockerfile, src/ and
+      # schema.sql), relative to this compose file.
+      #
+      # Configurable because the two supported layouts differ:
+      #   monorepo         -> BUILD_CONTEXT=./backend
+      #   backend-only repo -> BUILD_CONTEXT=.        (compose file sits beside the Dockerfile)
+      #
+      # A wrong value fails fast and unmistakably with
+      # "unable to prepare context: path ... not found".
+      context: ${BUILD_CONTEXT:-.}
       dockerfile: Dockerfile
     image: careerplatform-api:latest
     restart: unless-stopped
