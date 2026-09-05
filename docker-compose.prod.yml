@@ -113,6 +113,15 @@ services:
       CodeExecution__Provider: ${CODE_EXECUTION_PROVIDER:-Disabled}
       CodeExecution__BaseUrl: ${CODE_EXECUTION_BASE_URL:-}
 
+      # ── Observability ───────────────────────────────────────────────────────
+      # Both OFF by default: there is no OTLP collector on this VPS, and running one
+      # would cost 100-300 MB out of the 2 GB budget. Startup HARD-FAILS if either
+      # flag is true while the endpoint is empty (ValidateExporterEndpoint), so these
+      # three values must always be changed together.
+      Observability__TracingEnabled: ${OBSERVABILITY_TRACING_ENABLED:-false}
+      Observability__MetricsEnabled: ${OBSERVABILITY_METRICS_ENABLED:-false}
+      Observability__OtlpEndpoint: ${OBSERVABILITY_OTLP_ENDPOINT:-}
+
       # ── File storage ────────────────────────────────────────────────────────
       # Uploaded resumes land on local disk (LocalFileStorage). Its default root is
       # AppContext.BaseDirectory/storage — i.e. /app/storage INSIDE the container,
