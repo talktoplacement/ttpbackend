@@ -9,8 +9,8 @@ client uses. This doc tells the mobile team what they need to know **beyond** th
 | Environment | Base URL |
 |---|---|
 | Local dev | `http://localhost:5215` (backend runs on Kestrel) |
-| Staging | *set per environment; e.g. `https://api.staging.placementpro.io`* |
-| Production | *set per environment; e.g. `https://api.placementpro.io`* |
+| Staging | *set per environment; e.g. `https://api.staging.TalktoPlacement.io`* |
+| Production | *set per environment; e.g. `https://api.TalktoPlacement.io`* |
 
 The mobile app should read this from a build-time constant so debug/staging/prod builds hit the
 right host.

@@ -23,7 +23,7 @@ public static class OpenApiRegistration
                 Title = "CareerPlatform API",
                 Version = "v1",
                 Description =
-                    "REST API for the CareerPlatform / PlacementPro platform.\n\n"
+                    "REST API for the CareerPlatform / TalktoPlacement platform.\n\n"
                     + "**Base URL:** `/api/v1/{resource}` — lowercase, kebab-case, plural nouns. "
                     + "This is the sole public surface; there is no unversioned or PascalCase form.\n\n"
                     + "**Authentication:** Bearer JWT (Supabase-issued). Send "

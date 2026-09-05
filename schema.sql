@@ -1,5 +1,5 @@
 -- =============================================================================
--- PlacementPro / CareerPlatform — PRODUCTION schema for Supabase (PostgreSQL)
+-- TalktoPlacement / CareerPlatform — PRODUCTION schema for Supabase (PostgreSQL)
 --
 -- SINGLE SOURCE OF TRUTH for the database schema. This file is hand-maintained:
 -- there are intentionally NO EF Core migration files in the project, and the API

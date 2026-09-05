@@ -34,7 +34,7 @@ public sealed class PlatformSettingSeeder : ISeeder
     {
         // --- general ---
         new("general.platformName", "general", "Platform Name",
-            "Displayed in the browser title and branding.", SettingValueType.String, "PlacementPro", 10),
+            "Displayed in the browser title and branding.", SettingValueType.String, "TalktoPlacement", 10),
         new("general.supportEmail", "general", "Public Support Email",
             "Address shown to users for support enquiries.", SettingValueType.String, "", 20),
         new("general.baseUrl", "general", "Platform Base URL",

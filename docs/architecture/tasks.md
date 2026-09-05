@@ -653,7 +653,7 @@ repointed to the canonical routes, verified against each controller:
 - [ ] **16 admin form routes still `<AwaitingBackend>`** — see the previous section for the
       per-resource recipe.
 - [ ] `(auth)/login` phone placeholder has a doubled prefix: `"+91 +91 9999999999"`.
-- [ ] `support@placementpro.io` / `+91 62995 77528` in `(public)/contact` need product-owner
+- [ ] `support@TalktoPlacement.io` / `+91 62995 77528` in `(public)/contact` need product-owner
       confirmation.
 
 ---
