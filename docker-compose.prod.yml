@@ -133,6 +133,12 @@ services:
 
     volumes:
       - api_storage:/app/storage
+      # DataProtection keys encrypt the auth cookie. They default to a path inside
+      # the container filesystem, so without this volume every `up --force-recreate`
+      # or image update generates a fresh key ring and logs out every signed-in user.
+      # ASP.NET Core warns about exactly this at startup
+      # ("may not be persisted outside of the container").
+      - api_dataprotection:/home/app/.aspnet/DataProtection-Keys
 
     # Places the container inside the 2 GB systemd slice
     # (deploy/systemd/careerplatform.slice). The slice caps this project as a
@@ -231,6 +237,9 @@ networks:
 volumes:
   # Uploaded resumes/PDFs. Back this up — it is the only state not in Supabase.
   api_storage:
+  # Auth-cookie encryption keys. Losing these logs everyone out; they are not
+  # recoverable from the database.
+  api_dataprotection:
   caddy_data:
   caddy_config:
   piston_packages:

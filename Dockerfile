@@ -28,6 +28,21 @@ RUN dotnet publish src/CareerPlatform.Api/CareerPlatform.Api.csproj \
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 WORKDIR /app
 
+# Create the two mount points as root and hand them to the non-root runtime user,
+# BEFORE switching to that user.
+#
+# This is what makes the named volumes usable. When Docker mounts an empty named
+# volume over a path that already exists in the image, it seeds the volume with that
+# path's contents AND its ownership. If the directory does not exist in the image,
+# Docker creates the mount root:root instead and the `app` user gets
+# "UnauthorizedAccessException: Access to the path '/app/storage/...' is denied".
+#
+#   /app/storage                        uploaded resumes (LocalFileStorage)
+#   /home/app/.aspnet/DataProtection-Keys   keys that encrypt the auth cookie —
+#       must persist, or every container recreate silently invalidates all sessions
+RUN mkdir -p /app/storage /home/app/.aspnet/DataProtection-Keys \
+    && chown -R app:app /app/storage /home/app/.aspnet
+
 # Run as non-root. The base image ships an "app" user (uid 1654); use it.
 USER app
 
@@ -40,6 +55,12 @@ ENV ASPNETCORE_ENVIRONMENT=Production \
 EXPOSE 8080
 
 COPY --from=build --chown=app:app /app/publish ./
+
+# Operator-owned price list and code-execution language catalog, read at startup by
+# AddOperatorPropertiesFile("application.properties") relative to the content root.
+# Without it the app logs "No application.properties found" and the subscription
+# catalog reconciler finds no plans, so the paid tiers never appear.
+COPY --chown=app:app application.properties ./
 
 # Liveness probe: the API exposes /health/live (no dependencies) and /health/ready (DB/Redis).
 # Use curl if present, else the built-in dotnet-based fallback via wget/exit code.
